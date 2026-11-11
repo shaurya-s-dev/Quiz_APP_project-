@@ -1,0 +1,458 @@
+{
+  "Python": [
+    {
+      "question": "Which keyword is used to define a function in Python?",
+      "options": [
+        "function",
+        "def",
+        "fun",
+        "define"
+      ],
+      "answer": "def"
+    },
+    {
+      "question": "What is the output of type([])?",
+      "options": [
+        "<class 'tuple'>",
+        "<class 'dict'>",
+        "<class 'list'>",
+        "<class 'set'>"
+      ],
+      "answer": "<class 'list'>"
+    },
+    {
+      "question": "Which of these data types is immutable?",
+      "options": [
+        "list",
+        "dict",
+        "set",
+        "tuple"
+      ],
+      "answer": "tuple"
+    },
+    {
+      "question": "What does len('SRM') return?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "SRM"
+      ],
+      "answer": "3"
+    },
+    {
+      "question": "Which symbol starts a single-line comment in Python?",
+      "options": [
+        "//",
+        "/*",
+        "#",
+        "--"
+      ],
+      "answer": "#"
+    },
+    {
+      "question": "What does range(3) generate?",
+      "options": [
+        "1, 2, 3",
+        "0, 1, 2",
+        "0, 1, 2, 3",
+        "1, 2"
+      ],
+      "answer": "0, 1, 2"
+    },
+    {
+      "question": "Which block is used for exception handling?",
+      "options": [
+        "try-except",
+        "if-else",
+        "for-while",
+        "def-return"
+      ],
+      "answer": "try-except"
+    },
+    {
+      "question": "What is the value of 2 ** 3?",
+      "options": [
+        "6",
+        "5",
+        "8",
+        "9"
+      ],
+      "answer": "8"
+    },
+    {
+      "question": "Which list method adds an item at the end?",
+      "options": [
+        "add()",
+        "insert()",
+        "append()",
+        "push()"
+      ],
+      "answer": "append()"
+    },
+    {
+      "question": "Which library is widely used for DataFrames?",
+      "options": [
+        "pandas",
+        "tkinter",
+        "random",
+        "sympy"
+      ],
+      "answer": "pandas"
+    },
+    {
+      "question": "Which function is used to take input from the user?",
+      "options": [
+        "scan()",
+        "input()",
+        "read()",
+        "get()"
+      ],
+      "answer": "input()"
+    },
+    {
+      "question": "Which brackets are used to create a dictionary?",
+      "options": [
+        "[ ]",
+        "( )",
+        "{ }",
+        "< >"
+      ],
+      "answer": "{ }"
+    },
+    {
+      "question": "What does the 'break' statement do inside a loop?",
+      "options": [
+        "Skips one round",
+        "Stops the loop",
+        "Restarts the loop",
+        "Ends the program"
+      ],
+      "answer": "Stops the loop"
+    },
+    {
+      "question": "Which keyword is used to bring in a module?",
+      "options": [
+        "include",
+        "import",
+        "using",
+        "load"
+      ],
+      "answer": "import"
+    },
+    {
+      "question": "What is the output of 7 % 3?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "0"
+      ],
+      "answer": "1"
+    }
+  ],
+  "Java Basics": [
+    {
+      "question": "Which keyword is used to create an object in Java?",
+      "options": [
+        "make",
+        "new",
+        "create",
+        "object"
+      ],
+      "answer": "new"
+    },
+    {
+      "question": "From which method does a Java program start running?",
+      "options": [
+        "start()",
+        "run()",
+        "main()",
+        "init()"
+      ],
+      "answer": "main()"
+    },
+    {
+      "question": "Which of these is NOT a primitive data type?",
+      "options": [
+        "int",
+        "char",
+        "boolean",
+        "String"
+      ],
+      "answer": "String"
+    },
+    {
+      "question": "Which keyword is used to inherit a class?",
+      "options": [
+        "extends",
+        "inherits",
+        "implements",
+        "super"
+      ],
+      "answer": "extends"
+    },
+    {
+      "question": "How many bytes does an int take in Java?",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "1"
+      ],
+      "answer": "4"
+    },
+    {
+      "question": "Which keyword makes a variable a constant?",
+      "options": [
+        "static",
+        "const",
+        "final",
+        "fixed"
+      ],
+      "answer": "final"
+    },
+    {
+      "question": "What is the output of 10 / 3 for two int values?",
+      "options": [
+        "3.33",
+        "3",
+        "4",
+        "1"
+      ],
+      "answer": "3"
+    },
+    {
+      "question": "Which loop always runs at least once?",
+      "options": [
+        "for",
+        "while",
+        "do-while",
+        "foreach"
+      ],
+      "answer": "do-while"
+    },
+    {
+      "question": "Java source code is first compiled into...",
+      "options": [
+        "machine code",
+        "bytecode",
+        "assembly",
+        "HTML"
+      ],
+      "answer": "bytecode"
+    },
+    {
+      "question": "Which statement prints a line in Java?",
+      "options": [
+        "print()",
+        "echo()",
+        "System.out.println()",
+        "console.log()"
+      ],
+      "answer": "System.out.println()"
+    },
+    {
+      "question": "Which keyword is used to create a class in Java?",
+      "options": [
+        "class",
+        "new",
+        "struct",
+        "define"
+      ],
+      "answer": "class"
+    },
+    {
+      "question": "Array indexing in Java starts from...",
+      "options": [
+        "0",
+        "1",
+        "-1",
+        "2"
+      ],
+      "answer": "0"
+    },
+    {
+      "question": "Which block is used to handle exceptions in Java?",
+      "options": [
+        "try-catch",
+        "if-else",
+        "switch",
+        "for"
+      ],
+      "answer": "try-catch"
+    },
+    {
+      "question": "Which method gives the length of a String?",
+      "options": [
+        "size()",
+        "length()",
+        "len()",
+        "count()"
+      ],
+      "answer": "length()"
+    },
+    {
+      "question": "Which keyword is used to implement an interface?",
+      "options": [
+        "extends",
+        "implements",
+        "inherits",
+        "uses"
+      ],
+      "answer": "implements"
+    }
+  ],
+  "Unit 5 Concepts": [
+    {
+      "question": "Which method starts the Tkinter event loop?",
+      "options": [
+        "start()",
+        "run()",
+        "mainloop()",
+        "loop()"
+      ],
+      "answer": "mainloop()"
+    },
+    {
+      "question": "Which widget is used to show text on the window?",
+      "options": [
+        "Label",
+        "Canvas",
+        "Scale",
+        "Spinbox"
+      ],
+      "answer": "Label"
+    },
+    {
+      "question": "Which widget allows only ONE choice from many?",
+      "options": [
+        "Checkbutton",
+        "Entry",
+        "Radiobutton",
+        "Label"
+      ],
+      "answer": "Radiobutton"
+    },
+    {
+      "question": "Which widget is used to draw shapes and lines?",
+      "options": [
+        "Label",
+        "Canvas",
+        "Spinbox",
+        "Button"
+      ],
+      "answer": "Canvas"
+    },
+    {
+      "question": "Which geometry manager uses rows and columns?",
+      "options": [
+        "pack()",
+        "grid()",
+        "place()",
+        "align()"
+      ],
+      "answer": "grid()"
+    },
+    {
+      "question": "A function that runs when a button is clicked is called...",
+      "options": [
+        "Event handler",
+        "Constructor",
+        "Loop",
+        "Module"
+      ],
+      "answer": "Event handler"
+    },
+    {
+      "question": "DFA stands for...",
+      "options": [
+        "Dynamic Final Array",
+        "Deterministic Finite Automaton",
+        "Direct File Access",
+        "Digital Flow Analysis"
+      ],
+      "answer": "Deterministic Finite Automaton"
+    },
+    {
+      "question": "Which Python library is used for symbolic maths?",
+      "options": [
+        "SymPy",
+        "Tkinter",
+        "Random",
+        "Turtle"
+      ],
+      "answer": "SymPy"
+    },
+    {
+      "question": "Which SymPy function finds the derivative?",
+      "options": [
+        "integrate()",
+        "diff()",
+        "solve()",
+        "expand()"
+      ],
+      "answer": "diff()"
+    },
+    {
+      "question": "In event-driven programming, the program flow is decided by...",
+      "options": [
+        "Events like clicks and key presses",
+        "Only loops",
+        "Only functions",
+        "Only classes"
+      ],
+      "answer": "Events like clicks and key presses"
+    },
+    {
+      "question": "Which widget gives a single-line text box?",
+      "options": [
+        "Entry",
+        "Label",
+        "Canvas",
+        "Scale"
+      ],
+      "answer": "Entry"
+    },
+    {
+      "question": "Which widget is a slider used to pick a number?",
+      "options": [
+        "Entry",
+        "Scale",
+        "Menu",
+        "Label"
+      ],
+      "answer": "Scale"
+    },
+    {
+      "question": "Which call shows a pop-up message in Tkinter?",
+      "options": [
+        "messagebox.showinfo()",
+        "print()",
+        "mainloop()",
+        "pack()"
+      ],
+      "answer": "messagebox.showinfo()"
+    },
+    {
+      "question": "Which SymPy function expands (x + y)**2?",
+      "options": [
+        "simplify()",
+        "expand()",
+        "solve()",
+        "limit()"
+      ],
+      "answer": "expand()"
+    },
+    {
+      "question": "Compared to a DFA, an NFA can have...",
+      "options": [
+        "Many transitions for the same symbol",
+        "Only one transition",
+        "No states",
+        "No input symbols"
+      ],
+      "answer": "Many transitions for the same symbol"
+    }
+  ]
+}
