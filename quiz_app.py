@@ -1,16 +1,18 @@
-import json
+"""
+SMART QUIZ APP - Tkinter
+Course : 21CSC203P Advanced Programming Practice (Unit 5 - Event Programming Paradigm)
+Flow   : Home -> Quiz (timer, instant feedback) -> Result (pie chart) -> Answer Review
+Data   : questions are stored directly in this file (QUESTIONS)
+"""
 import random
 import tkinter as tk
-from pathlib import Path
 from tkinter import messagebox, ttk
 
 # ======================================================================
 # 1. QUESTION DATA  (kept separate from the GUI code)
 # ======================================================================
-QUESTION_FILE = Path(__file__).with_name("questions.json")
-
-# Built-in fallback -> category : [(question, [4 options], index of correct option)]
-DEFAULT_QUESTIONS = {
+# category : [(question, [4 options], index of correct option)]
+QUESTIONS = {
     "Python": [
         ("Which keyword is used to define a function in Python?", ["function", "def", "fun", "define"], 1),
         ("What is the output of type([])?", ["<class 'tuple'>", "<class 'dict'>", "<class 'list'>", "<class 'set'>"], 2),
@@ -65,72 +67,12 @@ DEFAULT_QUESTIONS = {
 }
 
 
-def parse_question(item):
-    """Validate ONE question from the JSON file -> (text, options, answer_index). Raises ValueError if invalid."""
-    if not isinstance(item, dict):
-        raise ValueError("must be an object with question / options / answer")
-    text, answer = str(item.get("question", "")).strip(), str(item.get("answer", "")).strip()
-    options = item.get("options")
-    if not text:
-        raise ValueError("'question' is missing")
-    if not isinstance(options, list) or len(options) != 4:
-        raise ValueError("'options' must be a list of exactly 4 items")
-    options = [str(o).strip() for o in options]
-    if "" in options or len(set(options)) != 4:
-        raise ValueError("options must be 4 different, non-empty texts")
-    if answer not in options:
-        raise ValueError("'answer' must be exactly one of the options")
-    return text, options, options.index(answer)
-
-
-def load_questions(path=QUESTION_FILE):
-    """Return (bank, notes): bank = {category: [(text, options, answer_index)]}, notes = problems found.
-    Falls back to DEFAULT_QUESTIONS when the file is missing or unusable."""
-    name, fallback = Path(path).name, "Built-in questions are being used."
-    try:
-        with open(path, encoding="utf-8") as file:
-            raw = json.load(file)
-    except FileNotFoundError:
-        return DEFAULT_QUESTIONS, []                          # no file: quietly use built-in questions
-    except json.JSONDecodeError as err:
-        return DEFAULT_QUESTIONS, [f"{name} has a syntax error (line {err.lineno}).", fallback]
-    except (OSError, UnicodeDecodeError) as err:
-        return DEFAULT_QUESTIONS, [f"{name} could not be read ({type(err).__name__}).", fallback]
-    if not isinstance(raw, dict):
-        return DEFAULT_QUESTIONS, [f"{name} must contain categories at the top level.", fallback]
-
-    bank, notes = {}, []
-    for category, items in raw.items():
-        if not isinstance(items, list):
-            notes.append(f"Category '{category}' skipped: it must be a list of questions.")
-            continue
-        valid = []
-        for number, item in enumerate(items, start=1):
-            try:
-                valid.append(parse_question(item))
-            except ValueError as err:                         # skip the bad question, keep the rest
-                notes.append(f"{category} #{number} skipped: {err}.")
-        if valid:
-            bank[category] = valid
-    if not bank:
-        return DEFAULT_QUESTIONS, notes + ["No valid questions found. " + fallback]
-    return bank, notes
-
-
 def shuffle_options(question):
     """Copy of the question with options in random order (answer index updated)."""
     text, options, answer = question
     correct = options[answer]
     options = random.sample(options, len(options))
     return text, options, options.index(correct)
-
-
-def format_notes(notes, limit=6):
-    """Join problem messages for a message box (long lists are shortened)."""
-    shown = notes[:limit]
-    if len(notes) > limit:
-        shown.append(f"...and {len(notes) - limit} more.")
-    return "\n".join(shown)
 
 
 # ======================================================================
@@ -149,8 +91,8 @@ HELP_TEXT = ("1. Enter your name and choose a category.\n"
              "2. Click an option card (or press A-D).\n"
              "3. Press Enter / Next before the timer bar runs out.\n"
              "4. Green = correct answer, red = your wrong answer.\n"
-             "5. At the end, see the pie chart and review all answers.\n\n"
-             "Questions live in questions.json - edit it, then use File > Reload Questions.")
+             "5. At the end, see the pie chart and review all answers.")
+
 
 # ======================================================================
 # 3. APPLICATION
@@ -164,7 +106,7 @@ class QuizApp:
         root.resizable(False, False)
         root.configure(bg=self.t["bg"])
 
-        self.bank, notes = load_questions()
+        self.bank = QUESTIONS
 
         # Tkinter variables: automatically linked to widgets
         self.name_var = tk.StringVar()
@@ -190,8 +132,6 @@ class QuizApp:
         root.bind("<Return>", self.on_enter)                  # Enter -> Next / Start
         root.bind("<Key>", self.on_key)                       # A-D   -> choose option
         root.protocol("WM_DELETE_WINDOW", self.quit_app)      # window close button (X)
-        if notes:                                             # problems found in questions.json
-            root.after(300, lambda: messagebox.showwarning("Question file", format_notes(notes)))
 
     def apply_theme(self):
         t, style = self.t, ttk.Style()
@@ -204,8 +144,7 @@ class QuizApp:
         self.root.option_add("*TCombobox*Listbox.foreground", t["fg"])
 
     def build_menu(self):
-        menus = {"File": [("New Quiz", self.new_quiz), ("Reload Questions", self.reload_questions),
-                          None, ("Exit", self.quit_app)],
+        menus = {"File": [("New Quiz", self.new_quiz), None, ("Exit", self.quit_app)],
                  "Help": [("How to play", lambda: messagebox.showinfo("How to play", HELP_TEXT)),
                           ("About", lambda: messagebox.showinfo(
                               "About", "Smart Quiz App\nPython + Tkinter\n21CSC203P - Unit 5"))]}
@@ -223,19 +162,6 @@ class QuizApp:
     def new_quiz(self):
         if self.screen != "quiz" or messagebox.askyesno("New Quiz", "Leave this quiz and go to Home?"):
             self.show_home()
-
-    def reload_questions(self):
-        """Read questions.json again without restarting the app."""
-        if self.screen != "home":
-            messagebox.showinfo("Reload Questions", "Please go to the Home screen first (File > New Quiz).")
-            return
-        self.bank, notes = load_questions()
-        if self.category_var.get() not in self.bank:
-            self.category_var.set(next(iter(self.bank)))
-        self.show_home()                                      # redraw so the category list is updated
-        total = sum(len(items) for items in self.bank.values())
-        message = f"Loaded {total} questions in {len(self.bank)} categories."
-        messagebox.showinfo("Reload Questions", message + ("\n\n" + format_notes(notes) if notes else ""))
 
     def quit_app(self):
         """Used by the X button, File > Exit and the Exit button."""
