@@ -11,10 +11,9 @@ SRM Institute of Science and Technology, Kattankulathur.
 - Countdown timer bar that turns red when time is almost over
 - Instant feedback: the correct option turns green, a wrong pick turns red
 - Result screen with a pie chart, and an **answer review** screen showing every question
-- Light and dark theme (View → Dark mode)
-- Keyboard support: **A–D** to choose an option, **Enter** for Next
-- Questions are loaded from `questions.json`; built-in questions are used if the file is missing or broken
-- Safe error handling: invalid questions are skipped and reported instead of crashing the app
+- Keyboard support: **A–D** (or **1–4**) to choose an option, **Enter** for Next
+- Input checks: the player name is required and limited to 20 characters
+- Confirmation pop-ups before leaving or quitting a quiz in progress
 
 ## Tkinter concepts used
 
@@ -27,9 +26,9 @@ SRM Institute of Science and Technology, Kattankulathur.
 | Scale, Spinbox, Combobox | Seconds per question, number of questions, category |
 | Canvas | Timer bar and result pie chart |
 | Text + Scrollbar | Answer review |
-| Menu | File, View and Help menus |
+| Menu | File and Help menus |
 | messagebox | Errors, warnings and confirmations |
-| Events (`bind`, `after`, `command`) | Keyboard keys, hover effect, timer, button clicks |
+| Events (`bind`, `after`, `command`, `protocol`) | Keyboard keys, hover effect, timer, button clicks, window close |
 
 ## How to run
 
@@ -44,30 +43,29 @@ On Linux, install Tkinter first: `sudo apt install python3-tk`
 ## Project structure
 
 ```
-quiz_app.py       the application
-questions.json    the question bank
+quiz_app.py       the application (question bank included)
 README.md
 ```
 
 ## Editing the questions
 
-Open `questions.json` and add or change questions. Each question needs a text, exactly 4 different options,
-and an `answer` that matches one of the options exactly:
+The questions are stored in the `QUESTIONS` dictionary at the top of `quiz_app.py`.
+Each category maps to a list of tuples in this format:
 
-```json
-{
-  "Python": [
-    {
-      "question": "Which keyword is used to define a function in Python?",
-      "options": ["function", "def", "fun", "define"],
-      "answer": "def"
-    }
-  ]
-}
+```python
+(question text, [option 1, option 2, option 3, option 4], index of the correct option)
 ```
 
-Save the file and use **File → Reload Questions** in the app (no restart needed).
-A new top-level name creates a new category.
+Example:
+
+```python
+"Python": [
+    ("Which keyword is used to define a function in Python?", ["function", "def", "fun", "define"], 1),
+]
+```
+
+The index starts from 0, so `1` means the second option (`"def"`).
+Save the file and run the app again. A new top-level key in `QUESTIONS` creates a new category.
 
 ## Author
 
